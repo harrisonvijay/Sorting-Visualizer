@@ -24,6 +24,7 @@ export default function BarsArray(props) {
     const [ANIMATION_SPEED, setAnimationSpeed] = useState(animationSpeed);
     const [ARRAY_SIZE, setArraySize] = useState(arraySize);
     const [array, setArray] = useState(getRandomArray(ARRAY_SIZE));
+    const [currentlySorting, setCurrentlySorting] = useState(false);
 
     useEffect(() => {
         setAnimationSpeed(animationSpeed);
@@ -102,6 +103,7 @@ export default function BarsArray(props) {
                 }
                 if (idx === animationsList.length - 1) {
                     sortingOver();
+                    setCurrentlySorting(false);
                 }
             }, ANIMATION_SPEED * idx);
         });
@@ -128,10 +130,11 @@ export default function BarsArray(props) {
 
 
     useEffect(() => {
-        if (startSort) {
+        if (!currentlySorting && startSort) {
             sort(algorithmName, array);
+            setCurrentlySorting(true);
         }
-    }, [startSort, algorithmName, sort, array]);
+    }, [startSort, algorithmName, sort, array, currentlySorting]);
 
     return (
         <div className="container">
