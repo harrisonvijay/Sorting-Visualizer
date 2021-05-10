@@ -1,0 +1,11 @@
+.bar {
+  display: inline-block;
+  width: 6px;
+  margin: 0 1px;
+  background-color: rgb(0, 174, 255);
+  border: white;
+}
+
+.container {
+  text-align: center;
+}
